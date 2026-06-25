@@ -52,14 +52,12 @@ jobs:
         if: ${{ env.IMAGE_TAG != '' }}
         with:
           context: .
-          push: 
           build-args: |
             COMMIT=${{ github.sha }}
             BRANCH=${{ env.BRANCH }}
             NOW=${{ env.NOW }}
           platforms: linux/amd64,linux/arm64
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/free-games-claimer:${{env.IMAGE_TAG}}
             ghcr.io/${{ github.actor }}/free-games-claimer:${{env.IMAGE_TAG}}
           cache-from: type=gha
           cache-to: type=gha,mode=max
